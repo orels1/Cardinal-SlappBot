@@ -1,8 +1,9 @@
 'use strict'
-var express = require('express');
-var Slapp = require('slapp');
-var ConvoStore = require('slapp-convo-beepboop')
-var BeepBoopContext = require('slapp-context-beepboop')
+const express = require('express');
+const Slapp = require('slapp');
+const ConvoStore = require('slapp-convo-beepboop')
+const BeepBoopContext = require('slapp-context-beepboop')
+if(!process.env.PORT) throw Error('PORT is missing but required')
 
 /*
  *  SLAPP

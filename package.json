@@ -4,16 +4,14 @@
   "description": "A bot for slack based on Slapp ",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "watch": "nodemon server.js"
+    "start": "node server.js"
   },
   "author": "orels1",
   "license": "ISC",
   "dependencies": {
-    "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
-    "jade": "^1.11.0",
-    "morgan": "^1.7.0",
-    "slapp": "^1.2.0"
+    "slapp": "^1.2.0",
+    "slapp-context-beepboop": "^1.0.0",
+    "slapp-convo-beepboop": "^1.0.0"
   }
 }
