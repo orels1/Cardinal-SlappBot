@@ -23,10 +23,10 @@ app.set('port', process.env.PORT || 3000);
 app.use(logger('dev'));
 
 // debug
-slapp.use((msg, next) => {
-  console.log(msg)
-  next()
-})
+// slapp.use((msg, next) => {
+//   console.log(msg)
+//   next()
+// })
 
 // do stuff
 
