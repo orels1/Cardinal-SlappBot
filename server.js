@@ -3,7 +3,8 @@ const express = require('express');
 const Slapp = require('slapp');
 const ConvoStore = require('slapp-convo-beepboop')
 const BeepBoopContext = require('slapp-context-beepboop')
-if(!process.env.PORT) throw Error('PORT is missing but required')
+const logger = require('morgan');
+//if(!process.env.PORT) throw Error('PORT is missing but required')
 
 /*
  *  SLAPP
@@ -18,6 +19,14 @@ var slapp = Slapp({
 
 // attach to a server
 var app = slapp.attachToExpress(express());
+app.set('port', process.env.PORT || 3000);
+app.use(logger('dev'));
+
+// debug
+slapp.use((msg, next) => {
+  console.log(msg)
+  next()
+})
 
 // do stuff
 
@@ -41,7 +50,10 @@ slapp.message("бот, ешь картинку", (msg) => {
 });
 
 slapp.route('handleImageUpload', (msg) => {
-    console.log(msg);
+    if (msg.body.event.subtype = "file_share") {
+        console.log(msg.file);
+    }
+
 });
 
 /*
@@ -52,5 +64,6 @@ app.get('/', function(req, res) {
     res.send('Alive!');
 });
 
-app.listen(process.env.PORT);
-console.log('Express server listening on port ' + process.env.PORT);
+app.listen(app.get('port'), function() {
+  console.log('Express server listening on port ' + app.get('port'));
+});
