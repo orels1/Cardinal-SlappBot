@@ -1,0 +1,13 @@
+name: Cardinal-SlappBot
+author: orels1
+author_avatar: img/author.jpg
+avatar: img/bot.jpg
+config:
+    - name: VK_TOKEN
+        friendly_name: Access token for VK API
+        type: secret
+        default: "12341"
+slackscopes:
+    - bot
+    - commands
+    - incoming-webhook
