@@ -51,7 +51,14 @@ slapp.message("бот, ешь картинку", (msg) => {
 
 slapp.route('handleImageUpload', (msg) => {
     if (msg.body.event.subtype = "file_share") {
-        msg.say("Я тож так могу \n" + msg.body.event.file.permalink);
+        msg.say({
+            text: "Я тож так могу",
+            attachments: [
+                {
+                    image_url: msg.body.event.file.permalink
+                }
+            ]
+        });
     }
 
 });
