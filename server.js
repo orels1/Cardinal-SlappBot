@@ -28,7 +28,7 @@ slapp.message('^(hi|hello|\:wave\:|привет|хэй).*', ['mention'], (msg) =
 slapp.route('handleRequest', (msg) => {
     let test  = ["топ", "рейтинг", "top", "лидерборд"];
 
-    if (new RegExp(test.join('I')).test(msg)) {
+    if (new RegExp(test.join('|')).test(msg)) {
         msg.say('Лагуна все еще лучший ¯\\_(ツ)_/¯');
         return
     } else {
