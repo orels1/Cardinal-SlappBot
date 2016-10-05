@@ -55,6 +55,7 @@ slapp.route('handleImageUpload', (msg) => {
             text: "Я тож так могу",
             attachments: [
                 {
+                    text: "",
                     image_url: msg.body.event.file.permalink
                 }
             ]
