@@ -11,7 +11,7 @@ const logger = require('morgan');
  */
 
 // init
-var slapp = require('modules/init');
+var slapp = require('./modules/init');
 
 
 // attach to a server
@@ -26,7 +26,7 @@ app.use(logger('dev'));
 // })
 
 // Module system
-const helpbot = require('modules/helpbot');
+const helpbot = require('./modules/helpbot');
 
 // do stuff
 
