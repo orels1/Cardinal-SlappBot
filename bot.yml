@@ -1,7 +1,7 @@
 name: Cardinal-SlappBot
 author: orels1
 author_avatar: img/author.jpg
-avatar: img/bot.jpg
+avatar: img/bot.png
 config:
     - name: VK_TOKEN
       friendly_name: Access token for VK API
