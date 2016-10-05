@@ -22,8 +22,18 @@ var app = slapp.attachToExpress(express());
 // do stuff
 
 slapp.message('^(hi|hello|\:wave\:|привет|хэй).*', ['mention'], (msg) => {
-  msg.say('Yeah yeah... I\'m here');
+  msg.say('Да-да... Я тут... Хотел чего-то?').route('handleRequest', 60);
 });
+
+slapp.route('handleRequest', (msg) => {
+    if ('^(топ|рейтинг|лучшие).*').test(msg)) {
+        msg.say('Лагуна все еще лучший ¯\\_(ツ)_/¯');
+        return
+    } else {
+        msg.say('Ну и ладно');
+        return
+    }
+})
 
 /*
  *  END OF SLAPP
