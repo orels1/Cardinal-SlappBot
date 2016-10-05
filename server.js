@@ -51,7 +51,7 @@ slapp.message("бот, ешь картинку", (msg) => {
 
 slapp.route('handleImageUpload', (msg) => {
     if (msg.body.event.subtype = "file_share") {
-        console.log(msg.body.event.file);
+        msg.say("Я тож так могу \n" + msg.body.event.file.thumb_960));
     }
 
 });
