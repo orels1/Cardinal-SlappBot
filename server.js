@@ -21,7 +21,7 @@ var app = slapp.attachToExpress(express());
 
 // do stuff
 
-slapp.message(['hi (.*)', 'привет (.*)', 'хэй (.*)', ':wave: (.*)'], ['mention'], (msg) => {
+slapp.message('^(hi|hello|\:wave\:|привет|хэй).*', ['mention'], (msg) => {
   msg.say('Yeah yeah... I\'m here');
 });
 
