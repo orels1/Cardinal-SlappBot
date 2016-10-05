@@ -11,10 +11,7 @@ const logger = require('morgan');
  */
 
 // init
-var slapp = Slapp({
-    convo_store: ConvoStore(),
-    context: BeepBoopContext()
-});
+var slapp = require('modules/init');
 
 
 // attach to a server
@@ -27,6 +24,9 @@ app.use(logger('dev'));
 //   console.log(msg)
 //   next()
 // })
+
+// Module system
+const helpbot = require('modules/helpbot');
 
 // do stuff
 
