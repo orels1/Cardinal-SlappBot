@@ -1,9 +1,5 @@
 'use strict'
 const express = require('express');
-const Slapp = require('slapp');
-const ConvoStore = require('slapp-convo-beepboop')
-const BeepBoopContext = require('slapp-context-beepboop')
-const logger = require('morgan');
 //if(!process.env.PORT) throw Error('PORT is missing but required')
 
 /*
@@ -17,7 +13,6 @@ var slapp = require('./modules/init');
 // attach to a server
 var app = slapp.attachToExpress(express());
 app.set('port', process.env.PORT || 3000);
-app.use(logger('dev'));
 
 // debug
 // slapp.use((msg, next) => {
