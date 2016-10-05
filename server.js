@@ -34,6 +34,10 @@ slapp.route('handleRequest', (msg) => {
         msg.say('Ну и ладно');
         return
     }
+});
+
+slapp.message("бот, ешь картинку", ['message'], (msg) => {
+    msg.say('Не хочу >.<');
 })
 
 /*
