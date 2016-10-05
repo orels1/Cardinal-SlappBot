@@ -37,8 +37,12 @@ slapp.route('handleRequest', (msg) => {
 });
 
 slapp.message("бот, ешь картинку", (msg) => {
-    msg.say('Не хочу >.<');
-})
+    msg.say('Не хочу >.<').route('handleImageUpload');
+});
+
+slapp.route('handleImageUpload', (msg) => {
+    console.log(msg);
+});
 
 /*
  *  END OF SLAPP
