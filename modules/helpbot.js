@@ -30,7 +30,7 @@ slapp.message('.*(help|помоги).*', ['mention'], (msg) => {
             }
         ]
     })
-    .route('searchHelp');
+    .route('searchHelp', 60);
 });
 
 slapp.route('searchHelp', (msg) => {
