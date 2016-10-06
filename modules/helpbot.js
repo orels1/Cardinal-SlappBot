@@ -68,7 +68,7 @@ slapp.route('searchHelp', (msg) => {
         msg.say({
             text: "Хорошо, но давай уточним. Что именно тебя интересует?",
             attachments: options
-        });
+        }).route('selectTopic', 60);
         return
 
     } else {
@@ -77,6 +77,16 @@ slapp.route('searchHelp', (msg) => {
     }
 });
 
-slapp.action('section_select', 'answer', (msg, value) => {
-    msg.say('Окей, открываю');
-})
+slapp.route('selectTopic', (msg) => {
+    if (msg.type !== 'action') {
+        msg.say('Пожалуйста, выбери вариант из списка выше :wink:')
+        .route('selectTopic', 60);
+        return
+    } else {
+        msg.respond(msg.body.response_url, {
+            text: 'Окей, открываю',
+            delete_original: true
+        });
+        return
+    }
+});
