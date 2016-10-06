@@ -16,7 +16,7 @@ slapp.route('searchHelp', (msg) => {
     }
 });
 
-slapp.route('sectionSelect', (msg, section) {
+slapp.route('sectionSelect', (msg, section) => {
     let response;
 
     switch (section) {
