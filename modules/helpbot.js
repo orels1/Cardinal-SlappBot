@@ -54,6 +54,7 @@ slapp.route('searchHelp', (msg) => {
         response.forEach((item, index) => {
             options.push({
                 text: index + '. ' + item,
+                callback_id: 'section_select',
                 actions: [
                     {
                         "name": item,
@@ -75,3 +76,7 @@ slapp.route('searchHelp', (msg) => {
         return
     }
 });
+
+slapp.action('section_select', 'answer', (msg, value) => {
+    msg.respond(msg.body.response_url, `Окей, открываю`);
+})
