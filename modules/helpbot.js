@@ -9,19 +9,19 @@ slapp.message('.*(help|помоги).*', ['mention'], (msg) => {
                 callback_id: 'section_select',
                 actions: [
                     {
-                        "name": "features",
+                        "name": "section",
                         "text": "Фичеры",
                         "type": "button",
                         "value": "features"
                     },
                     {
-                        "name": "tests",
+                        "name": "section",
                         "text": "Викторины / Тесты",
                         "type": "button",
                         "value": "tests"
                     },
                     {
-                        "name": "gifs",
+                        "name": "section",
                         "text": "Гифки",
                         "type": "button",
                         "value": "gifs"
@@ -30,10 +30,11 @@ slapp.message('.*(help|помоги).*', ['mention'], (msg) => {
             }
         ]
     })
-    //.route('searchHelp', 60);
+    .route('searchHelp', 10);
 });
 
 slapp.route('searchHelp', (msg) => {
+    console.log(msg.type);
     if (msg.type !== 'action') {
         //msg.say('Пожалуйста, выбери вариант из списка выше :wink:')
         //.route('searchHelp', 60);
