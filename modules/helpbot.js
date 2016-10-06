@@ -1,19 +1,48 @@
 var slapp = require('./init');
 
 slapp.message('.*(help|помоги).*', ['mention'], (msg) => {
-  msg.say('Чем помочь?').route('searchHelp');
+    msg.say({
+        text: 'Чем помочь?',
+        attachments: [
+            {
+                text: "",
+                actions: [
+                    {
+                        "name": "features",
+                        "text": "Фичеры",
+                        "type": "button",
+                        "value": "features"
+                    },
+                    {
+                        "name": "tests",
+                        "text": "Викторины / Тесты",
+                        "type": "button",
+                        "value": "tests"
+                    },
+                    {
+                        "name": "gifs",
+                        "text": "Гифки",
+                        "type": "button",
+                        "value": "gifs"
+                    },
+                ]
+            }
+        ]
+    })
+    .route('searchHelp');
 });
 
 slapp.route('searchHelp', (msg) => {
-    let test = new RegExp(["фичер", "тест", "викторин", "гиф"].join('\S*|'));
-    if (test.test(msg.body.event.text)) {
-        let result = test.exec(msg.body.event.text);
-        let response;
+    if (msg.type !== 'action') {
+        msg.say('Пожалуйста, выбери вариант из списка выше :wink:')
+        .route('searchHelp', 60);
+        return
+    } else {
 
         // Options go here for time being
         // TODO: Do something about that. Better move to a .json file
-        switch (result[0]) {
-            case 'фичер':
+        switch (msg.body.actions[0].value) {
+            case 'features':
                 response = {
                     "Как поставить фичер" : "http://kanobu.ru/guidelines/#user-content-Редакционный-фичер",
                     "Какие размеры у картинок": "http://kanobu.ru/guidelines/#user-content-Редакционный-фичер",
@@ -22,8 +51,7 @@ slapp.route('searchHelp', (msg) => {
                     "Примеры": "http://kanobu.ru/guidelines/#user-content-Гифки"
                 };
                 break
-            case 'тест':
-            case 'викторин':
+            case 'tests':
                 response = {
                     "Типы викторин": "http://kanobu.ru/guidelines/#user-content-Викторины-тесты",
                     "Как сделать текстовую викторину": "http://kanobu.ru/guidelines/#user-content-Текстовые-викторины-тесты",
@@ -34,7 +62,7 @@ slapp.route('searchHelp', (msg) => {
                     "Примеры": "http://kanobu.ru/guidelines/#user-content-Общие-моменты"
                 };
                 break
-            case 'гиф':
+            case 'gifs':
                 response = {
                     "Как сделать гифку из видео": "http://kanobu.ru/guidelines/#user-content-Гифки",
                     "Требования к размерам и весу гифок на сайте": "http://kanobu.ru/guidelines/#user-content-Гифки",
@@ -92,9 +120,10 @@ slapp.route('searchHelp', (msg) => {
             });
         }
 
-        msg.say({
+        msg.respond(msg.body.response_url{
             text: "Хорошо, но давай уточним. Что именно тебя интересует?",
-            attachments: options
+            attachments: options,
+            delete_original: true
         }).route('selectTopic', 60);
         return
 
