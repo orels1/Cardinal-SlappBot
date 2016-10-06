@@ -54,18 +54,16 @@ slapp.route('sectionSelect', (msg, section) => {
             msg.say(':round_pushpin: Что-то пошло не так :cold_sweat:');
             break;
 
-        let options = "";
+        let options = [];
         response.forEach((item, index) => {
-            options += index + '. ' + item + '\n';
+            options.push({
+                text: index + '. ' + item
+            });
         });
 
         msg.say({
             text: "Что именно тебя интересует?",
-            attachments: [
-                {
-                    text: options,
-                }
-            ]
+            attachments: options
         });
 
     }
