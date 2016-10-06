@@ -19,6 +19,7 @@ slapp.route('searchHelp', (msg) => {
 });
 
 slapp.route('sectionSelect', (msg, state) => {
+    console.log('In da route!');
     let response;
 
     switch (state.section) {
@@ -56,20 +57,20 @@ slapp.route('sectionSelect', (msg, state) => {
             msg.say(':round_pushpin: Что-то пошло не так :cold_sweat:');
             return
             break
-
-        let options = [];
-        response.forEach((item, index) => {
-            options.push({
-                text: index + '. ' + item
-            });
-        });
-
-        console.log('Response', response, 'Options', options);
-
-        msg.say({
-            text: "Что именно тебя интересует?",
-            attachments: options
-        });
-        return
     }
-})
+    
+    let options = [];
+    response.forEach((item, index) => {
+        options.push({
+            text: index + '. ' + item
+        });
+    });
+
+    console.log('Response', response, 'Options', options);
+
+    msg.say({
+        text: "Что именно тебя интересует?",
+        attachments: options
+    });
+    return
+});
