@@ -51,18 +51,25 @@ slapp.route('searchHelp', (msg) => {
 
         // Build attachments
         let options = [];
+        // text first
         Object.keys(response).forEach((item, index) => {
             options.push({
-                text: item,
-                callback_id: 'section_select',
-                actions: [
-                    {
-                        "name": item,
-                        "text": "Выбрать",
-                        "type": "button",
-                        "value": response[item]
-                    }
-                ]
+                text: (index + 1) + '. ' + item
+            });
+        });
+
+        // then buttons
+        options.push({
+            text: "",
+            callback_id: 'section_select',
+            actions: []
+        });
+        Object.keys(response).forEach((item, index) => {
+            options[options.length-1].actions.push({
+                "name": item,
+                "text": index + 1,
+                "type": "button",
+                "value": response[item]
             });
         });
         msg.say({
