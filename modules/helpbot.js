@@ -35,8 +35,8 @@ slapp.message('.*(help|помоги).*', ['mention'], (msg) => {
 
 slapp.route('searchHelp', (msg) => {
     if (msg.type !== 'action') {
-        msg.say('Пожалуйста, выбери вариант из списка выше :wink:')
-        .route('searchHelp', 60);
+        //msg.say('Пожалуйста, выбери вариант из списка выше :wink:')
+        //.route('searchHelp', 60);
         return
     } else {
 
