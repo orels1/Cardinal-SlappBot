@@ -54,7 +54,8 @@ slapp.route('sectionSelect', (msg, state) => {
             break
         default:
             msg.say(':round_pushpin: Что-то пошло не так :cold_sweat:');
-            break;
+            return
+            break
 
         let options = [];
         response.forEach((item, index) => {
