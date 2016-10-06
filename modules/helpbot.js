@@ -120,7 +120,7 @@ slapp.route('searchHelp', (msg) => {
             });
         }
 
-        msg.respond(msg.body.response_url{
+        msg.respond(msg.body.response_url, {
             text: "Хорошо, но давай уточним. Что именно тебя интересует?",
             attachments: options,
             delete_original: true
