@@ -53,7 +53,7 @@ slapp.route('searchHelp', (msg) => {
         let options = [];
         Object.keys(response).forEach((item, index) => {
             options.push({
-                text: index + '. ' + item,
+                text: item,
                 callback_id: 'section_select',
                 actions: [
                     {
