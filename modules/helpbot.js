@@ -3,34 +3,34 @@ var slapp = require('./init');
 slapp.message('.*(help|помоги).*', ['mention'], (msg) => {
     msg.say({
         text: 'Чем помочь?',
-        attachments: [
-            {
-                text: "",
-                callback_id: 'section_select',
-                actions: [
-                    {
-                        "name": "features",
-                        "text": "Фичеры",
-                        "type": "button",
-                        "value": "features"
-                    },
-                    {
-                        "name": "tests",
-                        "text": "Викторины / Тесты",
-                        "type": "button",
-                        "value": "tests"
-                    },
-                    {
-                        "name": "gifs",
-                        "text": "Гифки",
-                        "type": "button",
-                        "value": "gifs"
-                    },
-                ]
-            }
-        ]
+        // attachments: [
+        //     {
+        //         text: "",
+        //         callback_id: 'section_select',
+        //         actions: [
+        //             {
+        //                 "name": "features",
+        //                 "text": "Фичеры",
+        //                 "type": "button",
+        //                 "value": "features"
+        //             },
+        //             {
+        //                 "name": "tests",
+        //                 "text": "Викторины / Тесты",
+        //                 "type": "button",
+        //                 "value": "tests"
+        //             },
+        //             {
+        //                 "name": "gifs",
+        //                 "text": "Гифки",
+        //                 "type": "button",
+        //                 "value": "gifs"
+        //             }
+        //         ]
+        //     }
+        // ]
     })
-    .route('searchHelp', 60);
+    //.route('searchHelp', 60);
 });
 
 slapp.route('searchHelp', (msg) => {
