@@ -61,6 +61,8 @@ slapp.route('sectionSelect', (msg, section) => {
             });
         });
 
+        console.log('Response', response, 'Options', options);
+
         msg.say({
             text: "Что именно тебя интересует?",
             attachments: options
