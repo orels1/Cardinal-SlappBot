@@ -1,9 +1,8 @@
 var slapp = require('./init');
 
 slapp.message('.*(help|помоги).*', ['mention'], (msg) => {
-    msg.respond(msg.body.response_url, {
+    msg.say({
         text: 'Чем помочь?',
-        delete_original: true,
         attachments: [{
             text: "",
             callback_id: 'section_select',
@@ -20,7 +19,7 @@ slapp.message('.*(help|помоги).*', ['mention'], (msg) => {
 slapp.route('searchHelp', (msg) => {
     if (msg.type !== 'action') {
         msg.say('Пожалуйста, выбери вариант из списка выше :wink:')
-        .route('searchHelp', 60);
+        .route('searchHelp', 10);
         return
     } else {
 
