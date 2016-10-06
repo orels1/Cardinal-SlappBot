@@ -72,6 +72,26 @@ slapp.route('searchHelp', (msg) => {
                 "value": response[item]
             });
         });
+
+        // if there are more than 5 buttons - build another raw (Slack limits)
+        if (Object.keys(response).length > 5) {
+            options.push({
+                text: "",
+                callback_id: 'section_select',
+                actions: []
+            });
+            Object.keys(response).forEach((item, index) => {
+                if (index > 4) {
+                    options[options.length-1].actions.push({
+                        "name": item,
+                        "text": index + 1,
+                        "type": "button",
+                        "value": response[item]
+                    });
+                }
+            });
+        }
+
         msg.say({
             text: "Хорошо, но давай уточним. Что именно тебя интересует?",
             attachments: options
