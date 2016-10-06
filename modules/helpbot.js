@@ -53,7 +53,15 @@ slapp.route('searchHelp', (msg) => {
         let options = [];
         response.forEach((item, index) => {
             options.push({
-                text: index + '. ' + item
+                text: index + '. ' + item,
+                actions: [
+                    {
+                        "name": item,
+                        "text": "Выбрать",
+                        "type": "Button",
+                        "value": index
+                    }
+                ]
             });
         });
         msg.say({
@@ -61,7 +69,7 @@ slapp.route('searchHelp', (msg) => {
             attachments: options
         });
         return
-        
+
     } else {
         msg.say('К сожалению, я не могу с этим помочь :cold_sweat:');
         return
