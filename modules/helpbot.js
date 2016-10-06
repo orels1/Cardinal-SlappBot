@@ -78,5 +78,5 @@ slapp.route('searchHelp', (msg) => {
 });
 
 slapp.action('section_select', 'answer', (msg, value) => {
-    msg.respond(msg.body.response_url, `Окей, открываю`);
+    msg.respond(`Окей, открываю`, (err) => {throw err});
 })
