@@ -1,34 +1,18 @@
 var slapp = require('./init');
 
 slapp.message('.*(help|помоги).*', ['mention'], (msg) => {
-    msg.say({
+    msg.respond(msg.body.response_url, {
         text: 'Чем помочь?',
-        attachments: [
-            {
-                text: "",
-                callback_id: 'section_select',
-                actions: [
-                    {
-                        "name": "section",
-                        "text": "Фичеры",
-                        "type": "button",
-                        "value": "features"
-                    },
-                    {
-                        "name": "section",
-                        "text": "Викторины / Тесты",
-                        "type": "button",
-                        "value": "tests"
-                    },
-                    {
-                        "name": "section",
-                        "text": "Гифки",
-                        "type": "button",
-                        "value": "gifs"
-                    }
-                ]
-            }
-        ]
+        delete_original: true,
+        attachments: [{
+            text: "",
+            callback_id: 'section_select',
+            actions: [
+                { "name": "section", "text": "Фичеры", "type": "button", "value": "features" },
+                { "name": "section", "text": "Викторины / Тесты", "type": "button", "value": "tests" },
+                { "name": "section", "text": "Гифки", "type": "button", "value": "gifs" }
+            ]
+        }]
     })
     .route('searchHelp', 10);
 });
@@ -36,7 +20,7 @@ slapp.message('.*(help|помоги).*', ['mention'], (msg) => {
 slapp.route('searchHelp', (msg) => {
     if (msg.type !== 'action') {
         msg.say('Пожалуйста, выбери вариант из списка выше :wink:')
-        //.route('searchHelp', 60);
+        .route('searchHelp', 60);
         return
     } else {
 
