@@ -6,6 +6,7 @@ slapp.message('.*(help|помоги).*', ['mention'], (msg) => {
         attachments: [
             {
                 text: "",
+                callback_id: 'section_select',
                 actions: [
                     {
                         "name": "features",
