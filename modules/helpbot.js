@@ -8,7 +8,9 @@ slapp.route('searchHelp', (msg) => {
     let test = new RegExp(["фичер", "тест", "викторин", "гиф"].join('\S*|'));
     if (test.test(msg.body.event.text)) {
         let result = test.exec(msg.body.event.text);
-        msg.say('Хорошо, но давай уточним').route('sectionSelect', result[0], 60);
+        console.log('Result', result);
+        let state = { section: result[0] };
+        msg.say('Хорошо, но давай уточним').route('sectionSelect', state, 60);
         return
     } else {
         msg.say('К сожалению, я не могу с этим помочь :cold_sweat:');
@@ -16,10 +18,10 @@ slapp.route('searchHelp', (msg) => {
     }
 });
 
-slapp.route('sectionSelect', (msg, section) => {
+slapp.route('sectionSelect', (msg, state) => {
     let response;
 
-    switch (section) {
+    switch (state.section) {
         case 'фичер':
             response = [
                 "Как поставить фичер",
