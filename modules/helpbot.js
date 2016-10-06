@@ -51,7 +51,7 @@ slapp.route('searchHelp', (msg) => {
 
         // Build attachments
         let options = [];
-        Onject.keys(response).forEach((item, index) => {
+        Object.keys(response).forEach((item, index) => {
             options.push({
                 text: index + '. ' + item,
                 callback_id: 'section_select',
