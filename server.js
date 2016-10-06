@@ -59,6 +59,10 @@ slapp.route('handleImageUpload', (msg) => {
 
 });
 
+slapp.message('^попрошу.*', ['mention'], (msg) => {
+    msg.say(":oldfag::tophat:\n:point_up::peka::wine_glass:");
+})
+
 /*
  *  END OF SLAPP
  */
