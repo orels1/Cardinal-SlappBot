@@ -14,34 +14,34 @@ slapp.route('searchHelp', (msg) => {
         // TODO: Do something about that. Better move to a .json file
         switch (result[0]) {
             case 'фичер':
-                response = [
-                    "Как поставить фичер",
-                    "Какие размеры у картинок",
-                    "Рекомендации по подбору картинок",
-                    "Что такое концентрированный фичер",
-                    "Примеры"
-                ];
+                response = {
+                    "Как поставить фичер" : "http://kanobu.ru/guidelines/#user-content-Редакционный-фичер",
+                    "Какие размеры у картинок": "http://kanobu.ru/guidelines/#user-content-Редакционный-фичер",
+                    "Рекомендации по подбору картинок": "http://kanobu.ru/guidelines/#user-content-Общие-рекомендации",
+                    "Что такое концентрированный фичер": "http://kanobu.ru/guidelines/#user-content-Концентрированный-фичер",
+                    "Примеры": "http://kanobu.ru/guidelines/#user-content-Гифки"
+                };
                 break
             case 'тест':
             case 'викторин':
-                response = [
-                    "Типы викторин",
-                    "Как сделать текстовую викторину",
-                    "Как сделать визуальную викторину",
-                    "Как сделать аудио-викторину",
-                    "Как сделать викторину «Узнай, кто ты»",
-                    "Как добавить викторину в статью",
-                    "Примеры"
-                ];
+                response = {
+                    "Типы викторин": "http://kanobu.ru/guidelines/#user-content-Викторины-тесты",
+                    "Как сделать текстовую викторину": "http://kanobu.ru/guidelines/#user-content-Текстовые-викторины-тесты",
+                    "Как сделать визуальную викторину": "http://kanobu.ru/guidelines/#user-content-Визуальные-викторины-тесты",
+                    "Как сделать аудио-викторину": "http://kanobu.ru/guidelines/#user-content-Аудио-викторины-тесты",
+                    "Как сделать викторину «Узнай, кто ты»": "http://kanobu.ru/guidelines/#user-content-Викторина-Узнай,-кто-ты",
+                    "Как добавить викторину в статью": "http://kanobu.ru/guidelines/#user-content-Публикация",
+                    "Примеры": "http://kanobu.ru/guidelines/#user-content-Общие-моменты"
+                };
                 break
             case 'гиф':
-                response = [
-                    "Как сделать гифку из видео",
-                    "Требования к размерам и весу гифок на сайте",
-                    "Как облегчить гифку",
-                    "Где искать гифки",
-                    "Примеры"
-                ];
+                response = {
+                    "Как сделать гифку из видео": "http://kanobu.ru/guidelines/#user-content-Гифки",
+                    "Требования к размерам и весу гифок на сайте": "http://kanobu.ru/guidelines/#user-content-Гифки",
+                    "Как облегчить гифку": "http://kanobu.ru/guidelines/#user-content-Гифки",
+                    "Где искать гифки": "http://kanobu.ru/guidelines/#user-content-Гифки",
+                    "Примеры": "http://kanobu.ru/guidelines/#user-content-Гифки"
+                };
                 break
             default:
                 msg.say(':round_pushpin: Что-то пошло не так :cold_sweat:');
@@ -51,7 +51,7 @@ slapp.route('searchHelp', (msg) => {
 
         // Build attachments
         let options = [];
-        response.forEach((item, index) => {
+        Onject.keys(response).forEach((item, index) => {
             options.push({
                 text: index + '. ' + item,
                 callback_id: 'section_select',
@@ -60,7 +60,7 @@ slapp.route('searchHelp', (msg) => {
                         "name": item,
                         "text": "Выбрать",
                         "type": "button",
-                        "value": index
+                        "value": response[item]
                     }
                 ]
             });
@@ -84,7 +84,7 @@ slapp.route('selectTopic', (msg) => {
         return
     } else {
         msg.respond(msg.body.response_url, {
-            text: 'Окей, открываю',
+            text: 'Окей, ответ ждет тебя тут\n' + msg.body.actions[0].value,
             delete_original: true
         });
         return
