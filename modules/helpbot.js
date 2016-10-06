@@ -127,9 +127,6 @@ slapp.route('searchHelp', (msg) => {
         }).route('selectTopic', 60);
         return
 
-    } else {
-        msg.say('К сожалению, я не могу с этим помочь :cold_sweat:');
-        return
     }
 });
 
