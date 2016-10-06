@@ -69,6 +69,6 @@ slapp.route('sectionSelect', (msg, state) => {
             text: "Что именно тебя интересует?",
             attachments: options
         });
-
+        return
     }
 })
