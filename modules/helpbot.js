@@ -58,7 +58,7 @@ slapp.route('searchHelp', (msg) => {
                     {
                         "name": item,
                         "text": "Выбрать",
-                        "type": "Button",
+                        "type": "button",
                         "value": index
                     }
                 ]
