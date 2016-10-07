@@ -29,6 +29,10 @@ slapp.message('^(hi|hello|\:wave\:|привет|хэй).*', ['mention'], (msg) =
   msg.say('Да-да... Я тут... Хотел чего-то?').route('handleRequest', 60);
 });
 
+slapp.message('^спаси.*', ['mention'], (msg) => {
+  msg.say('orels1 сбежал... ¯\\_(ツ)_/¯');
+});
+
 slapp.route('handleRequest', (msg) => {
     let test  = ["топ", "рейтинг", "top", "лидерборд"];
     if (new RegExp(test.join('|')).test(msg.body.event.text)) {
