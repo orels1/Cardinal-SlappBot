@@ -31,7 +31,13 @@ slapp.message('^попрошу.*', ['mention'], (msg) => {
 })
 
 slapp.message('.*напиши вопль.*', ['mention', 'direct_message'], (msg) => {
-    msg.say('Что написать?').route('sendShout', 60);
+    if (msg.body.event.user != process.env.ADMIN_USER) {
+        // check if used by an admin
+        msg.say('Извини, но постить вопли может только админ бота');
+        return
+    } else {
+        msg.say('Что написать?').route('sendShout', 60);
+    }
 })
 
 slapp.route('sendShout', (msg) => {

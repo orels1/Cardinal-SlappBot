@@ -19,6 +19,10 @@ config:
       friendly_name: gsid
       type: secret
       default: "12341"
+    - name: ADMIN_USER
+      friendly_name: Slack admin user ID
+      type: secret
+      default: "U062K6796"
 slackscopes:
     - bot
     - commands
