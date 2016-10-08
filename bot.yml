@@ -7,6 +7,18 @@ config:
       friendly_name: Access token for VK API
       type: secret
       default: "12341"
+    - name: CSRF_TOKEN
+      friendly_name: Cross-site KNB token
+      type: secret
+      default: "12341"
+    - name: PROBTN_ID
+      friendly_name: Kanobu-required id
+      type: secret
+      default: "12341"
+    - name: GS_ID
+      friendly_name: Second Kanobu-required id
+      type: secret
+      default: "12341"
 slackscopes:
     - bot
     - commands
