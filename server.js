@@ -55,12 +55,12 @@ slapp.route('sendShout', (msg) => {
         // but they are pretty liberal
 
         let j = request.jar();
-        let url = "http://kanobu.ru"
+        let url = "kanobu.ru"
         j.setCookie(request.cookie('csrftoken=' + process.env.CSRF_TOKEN), url);
         j.setCookie(request.cookie('probtnid=' + process.env.PROBTN_ID), url);
         j.setCookie(request.cookie('gsid=' + process.env.GS_ID), url);
 
-        request.post({url: url + '/shouts/add/', jar: j, formData: formData},
+        request.post({url: 'http://kanobu.ru/shouts/add/', jar: j, formData: formData},
             (err, response, body) => {
                 if (err) {
                     // if crashed - ask for retry
