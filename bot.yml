@@ -12,11 +12,11 @@ config:
       type: secret
       default: "12341"
     - name: PROBTN_ID
-      friendly_name: Kanobu-required id
+      friendly_name: prontnid
       type: secret
       default: "12341"
     - name: GS_ID
-      friendly_name: Second Kanobu-required id
+      friendly_name: gsid
       type: secret
       default: "12341"
 slackscopes:
