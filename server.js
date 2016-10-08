@@ -39,8 +39,10 @@ app.get('/', function(req, res) {
 
 // Debug some stuff here
 
-console.log('Tokens will go next\n', 'CSRF_TOKEN', CSRF_TOKEN, 'PROBTN_ID', PROBTN_ID,
-            'GS_ID', GS_ID);
+console.log('Tokens will go next\n',
+            'CSRF_TOKEN', process.env.CSRF_TOKEN,
+            'PROBTN_ID', process.env.PROBTN_ID,
+            'GS_ID', process.env.GS_ID);
 
 app.listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'));
