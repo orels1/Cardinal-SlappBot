@@ -60,7 +60,14 @@ slapp.route('sendShout', (msg) => {
         j.setCookie(request.cookie('probtnid=' + process.env.PROBTN_ID), url);
         j.setCookie(request.cookie('gsid=' + process.env.GS_ID), url);
 
-        request.post({url: 'http://kanobu.ru/shouts/add/', jar: j, formData: formData},
+        request.post({
+            url: 'http://kanobu.ru/shouts/add/',
+            jar: j,
+            formData: formData,
+            headers: {
+                'X-CSRFToken': process.env.CSRF_TOKEN
+            }
+        },
             (err, response, body) => {
                 if (err) {
                     // if crashed - ask for retry
