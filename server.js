@@ -69,6 +69,7 @@ slapp.route('sendShout', (msg) => {
                     return console.error('posting failed', err);
                 } else if (response.statusCode != 200) {
                     // if request was good, but something went wrong
+                    console.log(body);
                     msg.say('Канобу вернул ошибку, попробуем еще раз? (да/нет/+/-)')
                     .route('shoutRetry', 60);
                     return
