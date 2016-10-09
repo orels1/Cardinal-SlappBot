@@ -93,7 +93,7 @@ slapp.route('addFeature', (msg, state) => {
     if (!msg.isMessage()) {
         msg.say('Пожалуйста используй ответы: да/нет/+/-').route('addFeature', state, 60);
         return
-    if (msg.body.event.text == 'нет' || msg.body.event.text == '-') {
+    } else if (msg.body.event.text == 'нет' || msg.body.event.text == '-') {
         msg.say('Жаль :slightly_frowning_face: напиши _поставь фичер_, если хочешь попробовать снова')
         return
     } else if (msg.body.event.text == 'да' || msg.body.event.text == '+') {
