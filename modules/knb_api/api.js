@@ -13,7 +13,7 @@ class KnbApi {
     }
 
     // main send function
-    sendToApi(url, data, cb) {
+    static sendToApi(url, data, cb) {
         // grab pre-configured cookie jar
         let j = knbauth;
 
