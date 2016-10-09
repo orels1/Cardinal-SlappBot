@@ -12,7 +12,7 @@ slapp.route('getFeatureLink', (msg) => {
     if (msg.body.event.type != 'message') {
         msg.say('Пожалуйста, пришли только ссылку').route('getFeatureLink', 60);
         return
-    if (msg.body.event.text.indexOf('http') == -1) {
+    } else if (msg.body.event.text.indexOf('http') == -1) {
         msg.say('Ссылка должна начинаться с http/https').route('getFeatureLink', 60);
         return
     } else {
@@ -97,7 +97,7 @@ slapp.route('addFeature', (msg, state) => {
         msg.say('Пожалуйста используй ответы: да/нет/+/-').route('addFeature', state, 60);
         return
     } else if (msg.body.event.text == 'нет' || msg.body.event.text == '-') {
-        msg.say('Жаль :slightly_frowning_face: напиши _поставь фичер_, если хочешь попробовать снова')
+        msg.say('Жаль :slightly_frowning_face: напиши _*поставь фичер*_, если хочешь попробовать снова')
         return
     } else if (msg.body.event.text == 'да' || msg.body.event.text == '+') {
         // send shout
