@@ -24,7 +24,7 @@ slapp.route('getFeatureLink', (msg) => {
         };
 
         msg.say('Отлично, номер материала \`' + longread + '`\nКакой будет заголовок?')
-        route('getFeatureTitle', state, 60);
+        .route('getFeatureTitle', state, 60);
         return
     }
 });
