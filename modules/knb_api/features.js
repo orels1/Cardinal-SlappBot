@@ -9,8 +9,7 @@ slapp.message('.*поставь фичер.*', ['mention', 'direct_message'], (m
 });
 
 slapp.route('getFeatureLink', (msg) => {
-    console.log(msg);
-    if (msg.body.event.type != 'message') {
+    if (Object.keys(msg.body.event).indexOf('subtype') != -1) {
         msg.say('Пожалуйста, пришли только ссылку').route('getFeatureLink', 60);
         return
     } else if (msg.body.event.text.indexOf('http') == -1) {
@@ -34,7 +33,7 @@ slapp.route('getFeatureLink', (msg) => {
 });
 
 slapp.route('getFeatureTitle', (msg, state) => {
-    if (msg.body.event.type != 'message') {
+    if (Object.keys(msg.body.event).indexOf('subtype') != -1) {
         msg.say('Пожалуйста, пришли только заголовок').route('getFeatureTitle', state, 60);
         return
     } else {
@@ -66,7 +65,7 @@ slapp.route('getFeatureSubTitle', (msg, state) => {
 });
 
 slapp.route('getFeatureSize', (msg, state) => {
-    if (msg.body.event.type != 'message') {
+    if (Object.keys(msg.body.event).indexOf('subtype') != -1) {
         msg.say('Пожалуйста, выбери размер фичера: 1/2/3').route('getFeatureSize', state, 60);
         return
     } else {
@@ -94,7 +93,7 @@ slapp.route('getFeatureSize', (msg, state) => {
 
 slapp.route('addFeature', (msg, state) => {
     // check if is a text message
-    if (msg.body.event.type != 'message') {
+    if (Object.keys(msg.body.event).indexOf('subtype') != -1) {
         msg.say('Пожалуйста используй ответы: да/нет/+/-').route('addFeature', state, 60);
         return
     } else if (msg.body.event.text == 'нет' || msg.body.event.text == '-') {

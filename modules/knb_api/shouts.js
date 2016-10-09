@@ -16,7 +16,7 @@ slapp.message('.*напиши вопль.*', ['mention', 'direct_message'], (msg
 
 slapp.route('sendShout', (msg) => {
     // check if is a text message
-    if (msg.body.event.type != 'message') {
+    if (Object.keys(msg.body.event).indexOf('subtype') != -1) {
         msg.say('Пожалуйста, напиши текст').route('sendShout', 60);
         return
     // check if message fits
@@ -50,7 +50,7 @@ slapp.route('sendShout', (msg) => {
 // retry handle
 slapp.route('shoutRetry', (msg) => {
     // check if message, and if it is - check if it has correct format
-    if (msg.body.event.type != 'message') {
+    if (Object.keys(msg.body.event).indexOf('subtype') != -1) {
         msg.say('Пожалуйста, используй да/нет/+/-').route('shoutRetry', 60);
         return
     } else if (msg.body.event.text == 'да' || msg.body.event.text == '+') {
