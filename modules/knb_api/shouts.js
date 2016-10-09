@@ -27,7 +27,7 @@ slapp.route('sendShout', (msg) => {
         return
     } else {
         // send shout
-        knbapi.sendShout(msg.body.event.text, (status, err) {
+        knbapi.sendShout(msg.body.event.text, (status, err) => {
             if (err) {
                 // if crashed - ask for retry
                 msg.say('Что-то пошло не так, попробуем еще раз? (да/нет/+/-)')

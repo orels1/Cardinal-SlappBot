@@ -99,7 +99,7 @@ slapp.route('addFeature', (msg, state) => {
     } else if (msg.body.event.text == 'да' || msg.body.event.text == '+') {
         // send shout
         knbapi.addFeature(state.title, state.subtitle, state.longread, state.size, 'test.jpg', 0, 'on',
-            (status, err) {
+            (status, err) => {
             if (err) {
                 // if crashed - ask for retry
                 msg.say('Что-то пошло не так, попробуем еще раз? (да/нет/+/-)')
