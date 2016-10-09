@@ -21,7 +21,7 @@ class KnbApi {
         request.post({
             url: url,
             jar: j,
-            formData: formData,
+            formData: data,
             headers: {
                 'X-CSRFToken': this.csrf
             }
