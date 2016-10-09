@@ -73,13 +73,13 @@ slapp.route('getFeatureSize', (msg, state) => {
 
         // compose check-message
         let message = `
-            Супер! Давай проверим.
-            Мы ставим в фичер лонгрид с id *` + state.longread + `*
-            С заголовком *` + state.title + `*
-            С подзаголовком *` + state.subtitle + `*
-            Размером *` + state.size + `*
+        Супер! Давай проверим.
+        Мы ставим в фичер лонгрид с id *` + state.longread + `*
+        С заголовком *` + state.title + `*
+        С подзаголовком *` + state.subtitle + `*
+        Размером *` + state.size + `*
 
-            Все верно? (да/нет/+/-)
+        Все верно? (да/нет/+/-)
         `;
 
         msg.say(message)
