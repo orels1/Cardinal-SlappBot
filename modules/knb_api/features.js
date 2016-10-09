@@ -9,7 +9,7 @@ slapp.message('.*поставь фичер.*', ['mention', 'direct_message'], (m
 });
 
 slapp.route('getFeatureLink', (msg) => {
-    if (!msg.isMessage()) {
+    if (msg.body.event.type != 'message') {
         msg.say('Пожалуйста, пришли только ссылку').route('getFeatureLink', 60);
         return
     } else {
@@ -17,7 +17,7 @@ slapp.route('getFeatureLink', (msg) => {
         let text = msg.body.event.text;
         let longread = text.substr(
                 text.lastIndexOf('-') + 1,
-                text.length - text.lastIndexOf('-') - 2);
+                text.lastIndexOf('/') - text.lastIndexOf('-') - 1);
 
         let state = {
             longread: longread
@@ -30,7 +30,7 @@ slapp.route('getFeatureLink', (msg) => {
 });
 
 slapp.route('getFeatureTitle', (msg, state) => {
-    if (!msg.isMessage()) {
+    if (msg.body.event.type != 'message') {
         msg.say('Пожалуйста, пришли только заголовок').route('getFeatureTitle', state, 60);
         return
     } else {
@@ -46,7 +46,7 @@ slapp.route('getFeatureTitle', (msg, state) => {
 });
 
 slapp.route('getFeatureSubTitle', (msg, state) => {
-    if (!msg.isMessage()) {
+    if (msg.body.event.type != 'message') {
         msg.say('Пожалуйста, пришли только подзаголовок').route('getFeatureSubTitle', state, 60);
         return
     } else {
@@ -62,7 +62,7 @@ slapp.route('getFeatureSubTitle', (msg, state) => {
 });
 
 slapp.route('getFeatureSize', (msg, state) => {
-    if (!msg.isMessage()) {
+    if (msg.body.event.type != 'message') {
         msg.say('Пожалуйста, выбери размер фичера: 1/2/3').route('getFeatureSize', state, 60);
         return
     } else {
@@ -90,7 +90,7 @@ slapp.route('getFeatureSize', (msg, state) => {
 
 slapp.route('addFeature', (msg, state) => {
     // check if is a text message
-    if (!msg.isMessage()) {
+    if (msg.body.event.type != 'message') {
         msg.say('Пожалуйста используй ответы: да/нет/+/-').route('addFeature', state, 60);
         return
     } else if (msg.body.event.text == 'нет' || msg.body.event.text == '-') {
