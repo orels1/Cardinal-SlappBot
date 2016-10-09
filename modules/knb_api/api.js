@@ -61,7 +61,7 @@ class KnbApi {
             'size': size,
             'title': title,
             'desc': subtitle,
-            'is_active': active
+            'is_active': active,
             'content_object': '71-' + longread
         }
 
