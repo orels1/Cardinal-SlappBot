@@ -56,13 +56,13 @@ class KnbApi {
     static addFeature(title, subtitle, longread, size, image, position, active, cb) {
         // Configure form-data for feature
         let formData = {
-            csrfmiddlewaretoken: this.csrf,
-            position: position,
-            size: size,
-            title: title,
-            desc: subtitle,
-            is_active: active
-            content_object: '71-' + longread
+            'csrfmiddlewaretoken': this.csrf,
+            'position': position,
+            'size': size,
+            'title': title,
+            'desc': subtitle,
+            'is_active': active
+            'content_object': '71-' + longread
         }
 
         let url = this.base + 'staff/featurer/featureitem/add';
