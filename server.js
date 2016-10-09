@@ -24,8 +24,8 @@ app.set('port', process.env.PORT || 3000);
 // Module system
 const helpbot = require('./modules/helpbot');
 const fun = require('./modules/fun');
-const shouts = require('./modules/shouts');
-const features = require('./modules/features');
+const shouts = require('./modules/knb_api/shouts');
+const features = require('./modules/knb_api/features');
 
 // do stuff
 
