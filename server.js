@@ -1,6 +1,5 @@
 'use strict'
 const express = require('express');
-const request = require('request');
 //if(!process.env.PORT) throw Error('PORT is missing but required')
 
 /*

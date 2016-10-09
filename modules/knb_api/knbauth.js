@@ -1,4 +1,5 @@
 var slapp = require('../init');
+const request = require('request');
 
 // Configure cookies jar for use in other modules
 
