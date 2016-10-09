@@ -9,6 +9,7 @@ slapp.message('.*поставь фичер.*', ['mention', 'direct_message'], (m
 });
 
 slapp.route('getFeatureLink', (msg) => {
+    console.log('message');
     if (msg.body.event.type != 'message') {
         msg.say('Пожалуйста, пришли только ссылку').route('getFeatureLink', 60);
         return
