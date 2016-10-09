@@ -42,7 +42,7 @@ slapp.route('getFeatureTitle', (msg, state) => {
         // assign to the whole object
         state.title = text;
 
-        msg.say('Отлично, заголовок фичера:\n*' + text + '*\nКакой будет подзаголовок?')
+        msg.say('Отлично, заголовок фичера:\n\n*' + text + '*\n\nКакой будет подзаголовок?')
         .route('getFeatureSubTitle', state, 60);
         return
     }
@@ -58,7 +58,7 @@ slapp.route('getFeatureSubTitle', (msg, state) => {
         // assign to the whole object
         state.subtitle = text;
 
-        msg.say('Отлично, подзаголовок фичера:\n*' + text + '*\nКакого размера будет фичер? (1/2/3)')
+        msg.say('Отлично, подзаголовок фичера:\n\n*' + text + '*\n\nКакого размера будет фичер? (1/2/3)')
         .route('getFeatureSize', state, 60);
         return
     }
@@ -75,15 +75,12 @@ slapp.route('getFeatureSize', (msg, state) => {
         state.size = text;
 
         // compose check-message
-        let message = `
-    Супер! Давай проверим.
-    Мы ставим в фичер лонгрид с id *` + state.longread + `*
-    С заголовком *` + state.title + `*
-    С подзаголовком *` + state.subtitle + `*
-    Размером *` + state.size + `*
-
-    Все верно? (да/нет/+/-)
-        `;
+        let message = 'Супер! Давай проверим.\n'
+                    + 'Мы ставим в фичер лонгрид с id *' + state.longread + '*\n'
+                    + 'С заголовком *' + state.title + '*\n'
+                    + 'С подзаголовком *' + state.subtitle + '*\n'
+                    + 'Размером *' + state.size + '*\n\n'
+                    + 'Все верно? (да/нет/+/-)';
 
         msg.say(message)
         .route('addFeature', state, 60);
