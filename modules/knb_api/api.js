@@ -13,7 +13,7 @@ class KnbApi {
     }
 
     // main send function
-    static sendToApi(url, data, cb) {
+    sendToApi(url, data, cb) {
         // grab pre-configured cookie jar
         let j = knbauth;
 
@@ -49,7 +49,7 @@ class KnbApi {
         }
 
         let url = this.base + 'shouts/add/';
-        sendToApi(url, formData, cb);
+        this.sendToApi(url, formData, cb);
     }
 
     // creates features
@@ -67,7 +67,7 @@ class KnbApi {
 
         let url = this.base + 'staff/featurer/featureitem/add';
 
-        sendToApi(url, formData, cb);
+        this.sendToApi(url, formData, cb);
     }
 }
 
