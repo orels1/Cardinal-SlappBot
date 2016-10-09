@@ -1,8 +1,6 @@
 // Post shouts from orels1 user
 var slapp = require('../init');
-
-// grab pre-built cookies jar
-const knbauth = require('./modules/knb_api/knbauth');
+const knbapi = require('./api');
 
 // ask for the shout
 slapp.message('.*напиши вопль.*', ['mention', 'direct_message'], (msg) => {
@@ -28,44 +26,24 @@ slapp.route('sendShout', (msg) => {
         .route('sendShout', 60);
         return
     } else {
-
-        // Configure form-data for shouts
-        let formData = {
-            'style': 'tiny',
-            'cry-text': msg.body.event.text,
-            'cry_path': '/'
-        }
-
-        // grab pre-configured cookie jar
-        let j = knbauth;
-
-        // send the request with all the cookies and the CSRF header
-        request.post({
-            url: 'http://kanobu.ru/shouts/add/',
-            jar: j,
-            formData: formData,
-            headers: {
-                'X-CSRFToken': process.env.CSRF_TOKEN
+        // send shout
+        knbapi.sendShout(msg.body.event.text, (status, err) {
+            if (err) {
+                // if crashed - ask for retry
+                msg.say('Что-то пошло не так, попробуем еще раз? (да/нет/+/-)')
+                .route('shoutRetry', 60);
+            } else if (status == 'fail') {
+                // if request was good, but something went wrong
+                msg.say('Канобу вернул ошибку, попробуем еще раз? (да/нет/+/-)')
+                .route('shoutRetry', 60);
+                return
+            } else {
+                // if everything is good - success
+                msg.say('Вопль успешно отправлен ^^');
+                return
             }
-        },
-            (err, response, body) => {
-                if (err) {
-                    // if crashed - ask for retry
-                    msg.say('Что-то пошло не так, попробуем еще раз? (да/нет/+/-)')
-                    .route('shoutRetry', 60);
-                    return console.error('posting failed', err);
-                } else if (response.statusCode != 200) {
-                    // if request was good, but something went wrong
-                    console.log(body);
-                    msg.say('Канобу вернул ошибку, попробуем еще раз? (да/нет/+/-)')
-                    .route('shoutRetry', 60);
-                    return
-                } else {
-                    // if everything is good - success
-                    msg.say('Вопль успешно отправлен ^^');
-                    return
-                }
-            })
+        })
+
     }
 });
 
