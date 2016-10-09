@@ -1,7 +1,7 @@
 // KNB "Fake" api
 
 const request = require('request');
-const knbauth = require('./modules/knb_api/knbauth');
+const knbauth = require('./knbauth');
 
 // Here we will make a "wrapper" for the most of the needed places
 
