@@ -12,6 +12,9 @@ slapp.route('getFeatureLink', (msg) => {
     if (msg.body.event.type != 'message') {
         msg.say('Пожалуйста, пришли только ссылку').route('getFeatureLink', 60);
         return
+    if (msg.body.event.text.indexOf('http') == -1) {
+        msg.say('Ссылка должна начинаться с http/https').route('getFeatureLink', 60);
+        return
     } else {
         // get the longread ID: portion from last '-' to the '/'
         let text = msg.body.event.text;
@@ -39,7 +42,7 @@ slapp.route('getFeatureTitle', (msg, state) => {
         // assign to the whole object
         state.title = text;
 
-        msg.say('Отлично, заголовок фичера:\n' + text + '\nКакой будет подзаголовок?')
+        msg.say('Отлично, заголовок фичера:\n*' + text + '*\nКакой будет подзаголовок?')
         .route('getFeatureSubTitle', state, 60);
         return
     }
@@ -55,7 +58,7 @@ slapp.route('getFeatureSubTitle', (msg, state) => {
         // assign to the whole object
         state.subtitle = text;
 
-        msg.say('Отлично, подзаголовок фичера:\n' + text + '\nКакого размера будет фичер? (1/2/3)')
+        msg.say('Отлично, подзаголовок фичера:\n*' + text + '*\nКакого размера будет фичер? (1/2/3)')
         .route('getFeatureSize', state, 60);
         return
     }
@@ -73,13 +76,13 @@ slapp.route('getFeatureSize', (msg, state) => {
 
         // compose check-message
         let message = `
-        Супер! Давай проверим.
-        Мы ставим в фичер лонгрид с id *` + state.longread + `*
-        С заголовком *` + state.title + `*
-        С подзаголовком *` + state.subtitle + `*
-        Размером *` + state.size + `*
+    Супер! Давай проверим.
+    Мы ставим в фичер лонгрид с id *` + state.longread + `*
+    С заголовком *` + state.title + `*
+    С подзаголовком *` + state.subtitle + `*
+    Размером *` + state.size + `*
 
-        Все верно? (да/нет/+/-)
+    Все верно? (да/нет/+/-)
         `;
 
         msg.say(message)
