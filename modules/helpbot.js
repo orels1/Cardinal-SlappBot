@@ -1,6 +1,6 @@
 var slapp = require('./init');
 
-slapp.message('.*(help|помоги).*', ['mention'], (msg) => {
+slapp.message('.*(help|помоги).*', ['mention', 'direct_message'], (msg) => {
     msg.say({
         text: 'Чем помочь?',
         attachments: [{
@@ -18,9 +18,14 @@ slapp.message('.*(help|помоги).*', ['mention'], (msg) => {
 
 slapp.route('searchHelp', (msg) => {
     if (msg.type !== 'action') {
-        msg.say('Пожалуйста, выбери вариант из списка выше :wink:')
-        .route('searchHelp', 10);
-        return
+        if (msg.body.event.text.toLowerCase().indexOf('стоп') != -1) {
+            msg.say('Хорошо, молчу :(');
+            return;
+        } else {
+            msg.say('Пожалуйста, выбери вариант из списка выше :wink: \n Или напиши "стоп", чтобы отменить поиск :no-entry-sign:')
+            .route('searchHelp', 10);
+            return
+        }
     } else {
 
         // Options go here for time being
