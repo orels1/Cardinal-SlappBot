@@ -22,7 +22,7 @@ slapp.route('searchHelp', (msg) => {
             msg.say('Хорошо, молчу :(');
             return;
         } else {
-            msg.say('Пожалуйста, выбери вариант из списка выше :wink: \n Или напиши "стоп", чтобы отменить поиск :no-entry-sign:')
+            msg.say('Пожалуйста, выбери вариант из списка выше :wink: \n Или напиши "стоп", чтобы отменить поиск :no_entry:')
             .route('searchHelp', 10);
             return
         }
